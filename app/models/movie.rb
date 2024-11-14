@@ -29,4 +29,8 @@ class Movie < ApplicationRecord
 
   has_many(:characters, class_name: "Character", foreign_key: "movie_id")
 
+  # burada actor association'un adi, table adi degil.
+  # soyle dusun: actor yonu one to many yonunde (normal yonunde gidiyor), sonra characters'in ters yonunde gidiyor
+  has_many(:cast, through: :characters, source: :actor)
+  
 end
