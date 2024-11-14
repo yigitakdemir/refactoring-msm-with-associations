@@ -26,4 +26,7 @@ class Movie < ApplicationRecord
 #
 #    return the_director
 #  end
+
+  has_many(:characters, class_name: "Character", foreign_key: "movie_id")
+
 end
