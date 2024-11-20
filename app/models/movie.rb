@@ -16,7 +16,7 @@ class Movie < ApplicationRecord
   validates(:director_id, presence: true)
   validates(:title, uniqueness: true)
 
-  belongs_to(:director, class_name: "Director", foreign_key: "director_id")
+  #belongs_to(:director, class_name: "Director", foreign_key: "director_id")
 #  def director
 #    d_id = self.director_id
 #
@@ -27,10 +27,14 @@ class Movie < ApplicationRecord
 #    return the_director
 #  end
 
-  has_many(:characters, class_name: "Character", foreign_key: "movie_id")
+  #has_many(:characters, :class_name: "Character", :foreign_key: "movie_id")
 
   # burada actor association'un adi, table adi degil.
   # soyle dusun: actor yonu one to many yonunde (normal yonunde gidiyor), sonra characters'in ters yonunde gidiyor
-  has_many(:cast, through: :characters, source: :actor)
+  #has_many(:cast, through: :characters, source: :actor)
+  belongs_to(:director, :class_name => "Director", :foreign_key => "director_id")
+
+  has_many(:characters, :class_name => "Character", :foreign_key => "movie_id")
   
+  has_many(:cast, :through => :characters, :source => :actor)
 end
